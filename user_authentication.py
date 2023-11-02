@@ -14,6 +14,10 @@ def authenticate_user(username, password):
     else:
         return False
     
+
+def profile_info():
+    pass
+    
 while True:
     print("\nMenu:")
     print("1. Register")
