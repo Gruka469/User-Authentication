@@ -1,14 +1,20 @@
+import re
+
 user_database = {}
 user_profiles = {}
 
+
 def register_user(username, password):
+    pattern = re.search(r'\W', password)
     if username not in user_database:
         user_database[username] = password
         user_profiles[username] = {}
         print("User registered successfully")
+    elif pattern is None:
+        print("Password is too weak; you must add symbol.")
     else:
         print("Username already exists try a different one.")
-
+    
 
 def authenticate_user(username, password):
     if username in user_database and user_database[username] == password:
