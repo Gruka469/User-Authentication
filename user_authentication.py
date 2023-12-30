@@ -5,15 +5,25 @@ user_profiles = {}
 
 
 def register_user(username, password):
+    MIN_PASSWORD_LENGTH = 8
+
     pattern = re.search(r'\W', password)
+    
+    if pattern is None:
+        print("Password is too weak; you must add a symbol.")
+        return
+    elif len(password) < MIN_PASSWORD_LENGTH:
+        print(f"Password is too short; it must be at least {MIN_PASSWORD_LENGTH} characters.")
+        return
+
+    # Check if username exists
     if username not in user_database:
         user_database[username] = password
         user_profiles[username] = {}
         print("User registered successfully")
-    elif pattern is None:
-        print("Password is too weak; you must add symbol.")
     else:
-        print("Username already exists try a different one.")
+        print("Username already exists; try a different one.")
+
     
 
 def authenticate_user(username, password):
